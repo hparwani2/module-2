@@ -1,22 +1,45 @@
-async function addContainer() {
-     return 'container added';
+async function fetchUsers() {
+    return [
+        {
+            firstName: 'prince',
+            lastName: 'pritam',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'pallab',
+            lastName: 'nandi',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'Haganesh',
+            lastName: 'kumar',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'Mayur',
+            lastName: 'shrivas',
+            course: 'BE-6'
+        }
+    ];
 }
 
-async function addSugar() {
-     return 'sugar added';
+async function concat(users) {
+    let result = [];
+    for(let user of users) {
+        result.push(user.firstName + user.lastName);
+    }
+    return result;
 }
 
 
-async function addMilk() {
-    return 'Milk added';
+async function display(value) {
+    console.log(value);
 }
 
-async function makeTea() {
-    let container = await addContainer();
-    let milk = await addMilk();
-    let sugar = await addSugar();
-    console.log(container + milk + sugar);
+async function performOperation() {
+    let users = await fetchUsers();
+    let concatenated = await concat(users);
+    await display(concatenated);
 }
-
-makeTea();
-console.log('Hello');
+performOperation();
+console.log('hey');

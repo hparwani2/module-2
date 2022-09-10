@@ -1,39 +1,105 @@
-function addContainer() {
-    return 'container added';
-}
-
-function addSugar() {
-    return 'sugar added';
-}
-
-function addTea() {
-    return ' tea added';
-}
-
-function addMilk() {
-    return ' Milk added';
-}
-
-function makeTea() {
-    new Promise(function(resolve, reject) {
-        resolve(addContainer()); // whatever function inside the resolve
-        // will return that would be passed to next 'then'.
-        reject((error) => console.log('error occured while making tea', error));
-        // if there is any error inside resolve it'll passed to resolve and
-        // whatever returned from reject will be passed to onRejected.
-
-    }).then((onFulfilled, onRejected) => {
-        if(!onRejected) {
-            return onFulfilled + addMilk();
+function fetchUsers() {
+    return [
+        {
+            firstName: 'prince',
+            lastName: 'pritam',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'pallab',
+            lastName: 'nandi',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'Haganesh',
+            lastName: 'kumar',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'Mayur',
+            lastName: 'shrivas',
+            course: 'BE-6'
         }
-    }).then((onFulfilled, onRejected) => {
-        if(!onRejected) {
-            return onFulfilled + addTea();
-        }
-    }).then((onFulfilled, onRejected) => {
-        console.log(onFulfilled);
-    });
+    ];
 }
 
-makeTea();
-console.log('Bye');
+function fetchUserPromise() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            resolve(fetchUsers());
+        }, 2000)
+    })
+}
+
+function fetchEmployees() {
+    return [
+        {
+            firstName: 'prince',
+            lastName: 'pritam',
+            course: 'BE-6'
+        },
+        {
+            firstName: 'Haganesh',
+            lastName: 'kumar',
+            course: 'BE-6'
+        }
+    ];
+}
+
+function fetchEmployeesPromise() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            resolve(fetchEmployees());
+        }, 3000)
+    })
+}
+
+function concat(users) {
+    let result = [];
+    for(let user of users) {
+        result.push(user.firstName + user.lastName);
+    }
+    return result;
+}
+
+
+function display(value) {
+    console.log(value);
+}
+
+
+function performOperation() {
+    
+    Promise.any([fetchUserPromise(), fetchEmployeesPromise()])
+            .then((data) => {
+                console.log(data);
+            });
+}
+
+// then accepts two functions
+/*
+1. onFulfiled
+2. onRejected
+*/
+
+/*
+1. promise.all
+2. promise.any
+3. promise.race
+*/
+
+performOperation();
+
+/*
+promise.any -> 
+1. if any one of them resolves that will be next next
+callback.
+2. if every promise is rejected then the first rejected
+promise will be passed as onRejected.
+*/
+
+/*
+promise.race ->
+1. whichever promise resolves or rejects first will be 
+passed as onFulfilled or onRejected.
+*/

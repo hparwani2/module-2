@@ -1,26 +1,35 @@
+/*
+
+chaining of dependent operations.
+    1. fetchingUsers
+    2. concatinating first and lastname
+    3. display
+*/
+
 function fetchUsers() {
-    return [
-        {
-            firstName: 'prince',
-            lastName: 'pritam',
-            course: 'BE-6'
-        },
-        {
-            firstName: 'pallab',
-            lastName: 'nandi',
-            course: 'BE-6'
-        },
-        {
-            firstName: 'Haganesh',
-            lastName: 'kumar',
-            course: 'BE-6'
-        },
-        {
-            firstName: 'Mayur',
-            lastName: 'shrivas',
-            course: 'BE-6'
-        }
-    ];
+    // return [
+    //     {
+    //         firstName: 'prince',
+    //         lastName: 'pritam',
+    //         course: 'BE-6'
+    //     },
+    //     {
+    //         firstName: 'pallab',
+    //         lastName: 'nandi',
+    //         course: 'BE-6'
+    //     },
+    //     {
+    //         firstName: 'Haganesh',
+    //         lastName: 'kumar',
+    //         course: 'BE-6'
+    //     },
+    //     {
+    //         firstName: 'Mayur',
+    //         lastName: 'shrivas',
+    //         course: 'BE-6'
+    //     }
+    // ];
+    return { error: true };
 }
 
 function fetchUserPromise() {
@@ -69,11 +78,23 @@ function display(value) {
 
 
 function performOperation() {
-    
-    Promise.any([fetchUserPromise(), fetchEmployeesPromise()])
-            .then((data) => {
-                console.log(data);
-            });
+    let promise = new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            let users = fetchUsers();
+            if(users.error) {
+                reject('Error Occurred');
+            } else {
+                resolve(users);
+            }
+        }, 2000);
+    }).then((data) => {
+        return concat(data);
+    })
+    .then((data) => {
+        display(data);
+    }).catch((error) => {
+        console.log('inside catch');
+    });
 }
 
 // then accepts two functions
@@ -92,7 +113,7 @@ performOperation();
 
 /*
 promise.any -> 
-1. if any one of them resolves that will be next next
+1. if any one of them resolves that will be passed next
 callback.
 2. if every promise is rejected then the first rejected
 promise will be passed as onRejected.

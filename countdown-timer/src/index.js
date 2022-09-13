@@ -1,3 +1,4 @@
+console.log('Hey i am loaded');
 document.getElementById("submit").onclick = (e) => {
   e.preventDefault();
   const target = document.getElementById("dateTime").value;

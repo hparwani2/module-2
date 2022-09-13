@@ -22,11 +22,14 @@ function RangeInterator(start = 1, end = Infinity, steps = 1) {
 Generators -> it is used to create iterators
 */
 
-// function* rangeIterator(start=1, end=Infinity, steps=1) {
-//     for(let i=start;i<=end;i+=steps) {
-//         yield i;
-//     }
-// }
+function* rangeIterator(start=1, end=Infinity, steps=1) {
+    for(let i=start;i<=end;i+=steps) {
+        yield i;
+    }
+}
+
+// whenever yield keyword gets encountered the execution
+// of next function would be returned.
 
 
 // let it = rangeIterator(1, 20, 4);
@@ -43,10 +46,14 @@ function* generator() {
     yield 3;
 }
 
-let it = generator();
-for(let item of it) {
-    console.log(item);
-}
+// let it = generator();
+
+// for(let item of it) {
+//     console.log(item);
+// }
+// for(let item of it) {
+//     console.log(item);
+// }
 
 //let it = generator();
 
@@ -88,13 +95,13 @@ function* fibonacci() {
 // console.log(it.next(true).value);
 
 
-function* toIterator() {
-     yield* ['a', 'b', 'c'];
-}
+// function* toIterator() {
+//      yield* ['a', 'b', 'c'];
+// }
 
-let arrIt = toIterator();
+// let arrIt = toIterator();
 
-console.log(arrIt.next().value);
+// console.log(arrIt.next().value);
 
 
 

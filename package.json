@@ -2,7 +2,7 @@
   "name": "module-2",
   "version": "1.0.0",
   "description": "E-commerce website building",
-  "main": "https.js",
+  "main": "express.js",
   "directories": {
     "lib": "lib"
   },
@@ -12,6 +12,7 @@
   "author": "Himanshu Parwani",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.1",
     "lodash": "^4.17.21"
   }
 }

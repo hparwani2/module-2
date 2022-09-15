@@ -1,0 +1,24 @@
+{
+  "name": "module2",
+  "version": "1.0.0",
+  "description": "E-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jashwanth-k/relevel-course.git"
+  },
+  "author": "Jashwanth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jashwanth-k/relevel-course/issues"
+  },
+  "homepage": "https://github.com/Jashwanth-k/relevel-course#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "leaflet": "^1.8.0",
+    "lodash": "^4.17.21"
+  }
+}

@@ -53,5 +53,11 @@ Homework
 
 
 
-queryParameters.
+queryParameters
+
+
+
+app.use(filter);
+    - username, password in headers
+    - filters 
 

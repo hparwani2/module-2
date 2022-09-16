@@ -42,27 +42,27 @@ function removeDuplicates(authors) {
 
 */
 function getAllBooks() {
-    let data = fs.readFileSync('./books.json');
+    let data = fs.readFileSync('./github/module-2/books.json');
     return JSON.parse(data);
 }
 
 function addBook(book) {
-    let data = fs.readFileSync('./books.json');
+    let data = fs.readFileSync('./github/module-2/books.json');
     let jsonData = JSON.parse(data);
     jsonData.push(book);
-    fs.writeFileSync('./books.json', JSON.stringify(jsonData));
+    fs.writeFileSync('./github/module-2/books.json', JSON.stringify(jsonData));
     return true;
 }
 
 
 function getBookById(id) {
-    let data = fs.readFileSync('./books.json');
+    let data = fs.readFileSync('./github/module-2/books.json');
     let jsonData = JSON.parse(data);
     return jsonData.filter((book) => book.id === id)[0];
 }
 
 function getAllAuthors() {
-    let data = fs.readFileSync('./books.json');
+    let data = fs.readFileSync('./github/module-2/books.json');
     let jsonData = JSON.parse(data);
     return jsonData.map((book) => book.author);
 }
@@ -91,8 +91,8 @@ app.get("/authors", function(req, res) {
 });
 
 app.use(function(req, res, next) {
-    if(req.headers['username'] === 'pallab' 
-    && req.headers['password'] === 'pallab@123') {
+    if(req.params.username === 'pallab' 
+    && req.params.password === 'pallab@123') {
         next();
     } else {
         res.setHeader('Content-Type', 'application/json');

@@ -91,8 +91,8 @@ app.get("/authors", function(req, res) {
 });
 
 app.use(function(req, res, next) {
-    if(req.params.username === 'pallab' 
-    && req.params.password === 'pallab@123') {
+    if(req.query.username === 'pallab' 
+    && req.query.password === 'pallab@123') {
         next();
     } else {
         res.setHeader('Content-Type', 'application/json');

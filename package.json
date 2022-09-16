@@ -2,7 +2,7 @@
   "name": "module-2",
   "version": "1.0.0",
   "description": "E-commerce website building",
-  "main": "prototype.js",
+  "main": "express.js",
   "directories": {
     "lib": "lib"
   },

@@ -91,8 +91,8 @@ app.get("/authors", function(req, res) {
 });
 
 app.use(function(req, res, next) {
-    if(req.params.username === 'Nijin' 
-    && req.params.password === '123') {
+    if(req.query.username === 'Nijin' 
+    && req.query.password === '123') {
         next();
     } else {
         res.setHeader('Content-Type', 'application/json');
@@ -157,7 +157,7 @@ app.put("/books", function(req, res) {
 
 
 
-app.listen(8080, () => {
+app.listen(4000, () => {
     console.log('application started');
 });
 

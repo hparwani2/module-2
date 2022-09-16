@@ -41,6 +41,13 @@ function removeDuplicates(authors) {
 /b - function
 
 */
+
+function ascSort() {
+    let data = fs.readFileSync('./github/module-2/books.json');
+    let jsonData = JSON.parse(data);
+    return jsonData.sort((a, b) => a.name.localCompare(b.name));
+}
+
 function getAllBooks() {
     let data = fs.readFileSync('./github/module-2/books.json');
     return JSON.parse(data);
@@ -90,16 +97,16 @@ app.get("/authors", function(req, res) {
     }
 });
 
-app.use(function(req, res, next) {
-    if(req.query.username === 'pallab' 
-    && req.query.password === 'pallab@123') {
-        next();
-    } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.writeHead(401);
-        res.end(JSON.stringify({status: "authorization fail"}));
-    }
-});
+// app.use(function(req, res, next) {
+//     if(req.query.username === 'pallab' 
+//     && req.query.password === 'pallab@123') {
+//         next();
+//     } else {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.writeHead(401);
+//         res.end(JSON.stringify({status: "authorization fail"}));
+//     }
+// });
 
 
 

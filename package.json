@@ -1,0 +1,15 @@
+{
+  "name": "be-module2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Express.js",
+  "dependencies": {
+    "express": "^4.18.1",
+    "Express": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

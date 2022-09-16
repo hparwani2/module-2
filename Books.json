@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "chacha chaudhary",
+        "ratings":  4,
+        "author": {
+            "name": "Nehal",
+            "noOfBooksPublished": 4
+        }
+    },
+    {
+        "id": 2,
+        "name": "Shiva Triology",
+        "ratings":  5,
+        "author": {
+            "name": "Amish",
+            "noOfBooksPublished": 7
+        }
+    },
+    {
+        "id": 3,
+        "name": "peace of life",
+        "ratings":  4,
+        "author": {
+            "name": "Sadguru",
+            "noOfBooksPublished": 2
+        }
+    },
+    {
+        "id": 4,
+        "name": "scion of ikshvaku",
+        "ratings":  4,
+        "author": {
+            "name": "Amish",
+            "noOfBooksPublished": 4
+        }
+    },
+    {
+        "id": 5,
+        "name": "Wings Of Fire",
+        "ratings":  5,
+        "author": {
+            "name": "Amish",
+            "noOfBooksPublished": 4
+        }
+    }
+]

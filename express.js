@@ -74,17 +74,17 @@ function getAllAuthors() {
     return jsonData.map((book) => book.author);
 }
 
-app.get("/authors", function(req, res, next) {
-    let authors = getAllAuthors();
-    if(authors) {
-        res.setHeader("Content-Type", "application/json");
-        res.writeHead(200);
-        res.end(JSON.stringify(authors));
+app.all('/books/*', function(req, res, next) {
+    if(req.headers['username'] === 'pallab' 
+    && req.headers['password'] === 'pallab@123') {
+        next();
     } else {
-        res.writeHead(500);
-        res.end();
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(401);
+        res.end(JSON.stringify({status: "authorization fail"}));
     }
 });
+
 
 app.get("/authors", function(req, res) {
     let authors = getAllAuthors();
@@ -107,6 +107,17 @@ app.get("/authors", function(req, res) {
 //         res.end(JSON.stringify({status: "authorization fail"}));
 //     }
 // });
+
+app.use(function(req, res, next) {
+    if(req.headers['username'] === 'pallab' 
+    && req.headers['password'] === 'pallab@123') {
+        next();
+    } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(401);
+        res.end(JSON.stringify({status: "authorization fail"}));
+    }
+});
 
 
 

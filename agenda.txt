@@ -1,0 +1,46 @@
+1. REST Architecture
+2. express.js
+    books and authors
+
+
+REST ----> Http protocol.
+
+1. stateless
+2. resource resolution
+3. status codes -- 200, 400, 500, 300, 100 ..
+4. methods
+
+
+1. getAllBooks() <---> /books
+2. getBookById(id) <----> /books/:id
+3. getAllAuthors() <----> /authors
+4. getAuthorById(id) <-----> /authors/:id
+6. getAuthorByBookId(id) <----> books/:id/author
+
+
+{
+    name: 'chacha chaudhary',
+    id: 1
+    author: {
+
+    }
+}
+
+Homework
+
+1. remove duplicates from getAllAuthors
+2. apply filter to get book by name
+3. update a book ---> PUT
+
+
+
+queryParameters
+
+app.use(filter);
+    - username, password in headers
+    - filters 
+
+
+make use of queryParameters
+
+1. book.name=shiva triology&book.ratings=5

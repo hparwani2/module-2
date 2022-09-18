@@ -18,14 +18,17 @@ const getBookById = function (id) {
 
 const getAllAuthors = function () {
   const books = getAllBooks();
-  let authors = books.filter((el) => el.author);
+  let authors = {};
+  books.forEach((el) => {
+    if (!authors[el.author.name]) authors[el.author.name] = 1;
+  });
   return authors;
 };
 
 const getAuthorsById = function (id) {
   const book = getBookById(id);
-  console.log(book);
-  return book.author ? book.author.name : undefined;
+  // console.log(book);
+  return book && book.author ? book.author.name : undefined;
 };
 
 app.get("/a", function (req, res) {
@@ -83,8 +86,24 @@ app.get("/authors", (req, res) => {
 app.get("/authors/:id", (req, res) => {
   let id = parseInt(req.params.id.slice(1));
   const authors = getAuthorsById(id);
-  console.log(authors);
+  if (authors) {
+    res.setHeader("Content-Type", "application/json");
+    res.writeHead(200);
+    res.end(JSON.stringify(authors));
+  } else {
+    res.writeHead(404);
+    res.end("error! no authors found");
+  }
 });
+
+// app.all("/books/?+", (req, res) => {
+//   console.log(req);
+// });
+
+// app.use((req, res, next) => {
+//   console.log(req);
+//   console.log("working");
+// });
 
 app.listen(8080, () => {
   console.log("application started");
@@ -95,3 +114,9 @@ app.listen(8080, () => {
 // 3. getAllAuthors() <----> /authors
 // 4. getAuthorById(id) <-----> /authors/:id
 // 6. getAuthorByBookId(id) <----> books/:id/author
+
+// Homework
+// 1. remove duplicates from getAllAuthors
+// 2. apply filter to get book by name
+// 3. update a book ---> PUT
+// queryParameters.

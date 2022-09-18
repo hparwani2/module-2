@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jashwanth-k/relevel-course.git"
+    "url": "git+https://github.com/Jashwanth-k/module-2.git"
   },
   "author": "Jashwanth",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jashwanth-k/relevel-course/issues"
+    "url": "https://github.com/Jashwanth-k/module-2/issues"
   },
-  "homepage": "https://github.com/Jashwanth-k/relevel-course#readme",
+  "homepage": "https://github.com/Jashwanth-k/module-2#readme",
   "dependencies": {
     "express": "^4.18.1",
     "leaflet": "^1.8.0",

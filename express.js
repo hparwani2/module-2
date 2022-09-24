@@ -7,6 +7,32 @@ const fs = require("fs");
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
+/*
+[
+    {
+        name: 'Amish'
+    },
+    {
+        name: 'Sadguru'
+    },
+    {
+        name: 'Amish'
+    }
+]
+
+function removeDuplicates(authors) {
+    let obj = {};
+    for(let author of authors) {
+        if(!obj[author.name]) {
+            obj[author.name] = author;
+        }
+    }
+    return Object.values(obj);
+}
+
+
+
+*/
 
 
 /*
@@ -41,6 +67,43 @@ function getAllAuthors() {
     return jsonData.map((book) => book.author);
 }
 
+app.all('/books/*', function(req, res, next) {
+    if(req.headers['username'] === 'pallab' 
+    && req.headers['password'] === 'pallab@123') {
+        next();
+    } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(401);
+        res.end(JSON.stringify({status: "authorization fail"}));
+    }
+});
+
+
+app.get("/authors", function(req, res) {
+    let authors = getAllAuthors();
+    if(authors) {
+        res.setHeader("Content-Type", "application/json");
+        res.writeHead(200);
+        res.end(JSON.stringify(authors));
+    } else {
+        res.writeHead(500);
+    }
+});
+
+// app.use(function(req, res, next) {
+//     if(req.headers['username'] === 'pallab' 
+//     && req.headers['password'] === 'pallab@123') {
+//         next();
+//     } else {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.writeHead(401);
+//         res.end(JSON.stringify({status: "authorization fail"}));
+//     }
+// });
+
+
+
+
 app.get("/a", function(req, res) {
     res.writeHead(200);
     res.end('Hey i am a');
@@ -53,11 +116,7 @@ app.get("/b", function(req, res) {
 
 app.get("/books", function(req, res) {
     let books = null;
-    if(req.query) {
-        books = getBooksByQueryParam(req.query);
-    } else {
-        books = getAllBooks();
-    }
+    books = getAllBooks();
     if(books) {
         res.setHeader("Content-Type", "application/json");
         res.writeHead(200);
@@ -79,17 +138,6 @@ app.get("/books/:id", function(req, res) {
     }
 });
 
-app.get("/authors", function(req, res) {
-    let authors = getAllAuthors();
-    if(authors) {
-        res.setHeader("Content-Type", "application/json");
-        res.writeHead(200);
-        res.end(JSON.stringify(authors));
-    } else {
-        res.writeHead(500);
-    }
-});
-
 app.post("/books", function(req, res) {
     let success = addBook(req.body);
     if(success) {
@@ -106,6 +154,9 @@ app.post("/books", function(req, res) {
 app.put("/books", function(req, res) {
 
 });
+
+
+
 
 app.listen(8080, () => {
     console.log('application started');

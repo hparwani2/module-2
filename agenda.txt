@@ -53,5 +53,16 @@ Homework
 
 
 
-queryParameters.
+queryParameters
+
+
+
+app.use(filter);
+    - username, password in headers
+    - filters 
+
+
+make use of queryParameters
+
+1. book.name=shiva triology&book.ratings=5
 

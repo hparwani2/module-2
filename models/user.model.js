@@ -1,6 +1,6 @@
 const { sequelize } = require('./../sequelize.connection');
 const { DataTypes } = require('sequelize');
-// const { orderModel } = require('./order.model');
+const { orderModel } = require('./order.model');
 
 function initializeUserSchema() {
 
@@ -27,6 +27,14 @@ function initializeUserSchema() {
             type: DataTypes.DATE,
             defaultValue: sequelize.fn('NOW')
         }
+    });
+
+    userModel.hasMany(orderModel, {
+        foreignKey: 'userid'
+    });
+
+    orderModel.belongsTo(userModel, {
+        foreignKey: 'userid'
     });
 
     return userModel;

@@ -33,14 +33,6 @@ function initializeOrderSchema() {
         }
     });
 
-    orderModel.hasOne(userModel, {
-        foreignKey: 'userid'
-    });
-
-    userModel.belongsToMany(orderModel, {
-        foreignKey: 'userid'
-    });
-
     return orderModel;
 
 }

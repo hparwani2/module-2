@@ -1,10 +1,10 @@
 const { sequelize } = require('./../sequelize.connection');
 const { DataTypes } = require('sequelize');
-// const { orderModel } = require('./order.model');
+const { orderModel } = require('./order.model');
 
-function initializeUserSchema() {
+function initializeProductSchema() {
 
-    let userModel = sequelize.define("users" ,{
+    let productModel = sequelize.define("products" ,{
         id: {
             type: DataTypes.TINYINT,
             primaryKey: true,
@@ -15,12 +15,12 @@ function initializeUserSchema() {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email: {
+        category: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        password: {
-            type: DataTypes.STRING,
+        price: {
+            type: DataTypes.BIGINT,
             allowNull: false
         },
         created_at: {
@@ -29,8 +29,16 @@ function initializeUserSchema() {
         }
     });
 
-    return userModel;
+    productModel.hasMany(orderModel, {
+        foreignKey: 'productid'
+    });
+
+    orderModel.belongsTo(productModel, {
+        foreignKey: 'productid'
+    });
+
+    return productModel;
 
 }
-let userModel = initializeUserSchema();
-module.exports = { userModel };
+let productModel = initializeProductSchema();
+module.exports = { productModel };

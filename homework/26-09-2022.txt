@@ -1,0 +1,8 @@
+1. create  productcontroller with following functions
+    a. findMaxProduct
+    b. findAllProductsWithOrders
+    c. countProductsByCategory
+2. create ordercontroller with following functions
+    a. findOrderWithUserAndProduct
+    b. findUserWithHighestPurchase
+    c. findAllOrders

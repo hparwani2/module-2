@@ -93,3 +93,14 @@ orders belongsTo users
 
 
 
+Males
+id  name  married_to
+            2
+
+
+
+
+
+Females
+id name
+

@@ -1,2 +1,4 @@
 
 1. regex in app.all
+2. Transaction Control
+3. hasOne and belongsToMany

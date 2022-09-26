@@ -1,10 +1,11 @@
-const { userConroller } = require('./controllers/user.controller');
+const { userController } = require('./controllers/user.controller');
 const { executeWithSync } = require('./sequelize.connection');
 
-let p1 = userConroller.createUser({
-    name: 'pallab',
-    email: 'pallab@gmail.com',
-    password: 'pallab@123'
-}).then(() => userConroller.deleteUserById(13));
+let p1 = userController
+.findUserById(2, true)
+.then((data) => {
+    console.log(data);
+})
+;
 
 executeWithSync(p1);

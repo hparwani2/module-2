@@ -1,7 +1,9 @@
 const { sequelize } = require('./../sequelize.connection');
 const { DataTypes } = require('sequelize');
+const { orderModel } = require('./order.model');
 
 function initializeUserSchema() {
+
     let userModel = sequelize.define("users" ,{
         id: {
             type: DataTypes.TINYINT,
@@ -27,8 +29,16 @@ function initializeUserSchema() {
         }
     });
 
+    userModel.hasMany(orderModel, {
+        foreignKey: 'userid'
+    });
+
+    orderModel.belongsTo(userModel, {
+        foreignKey: 'userid'
+    });
+
     return userModel;
 
 }
-
-module.exports = { initializeUserSchema };
+let userModel = initializeUserSchema();
+module.exports = { userModel };

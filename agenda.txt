@@ -66,3 +66,30 @@ make use of queryParameters
 
 1. book.name=shiva triology&book.ratings=5
 
+
+
+-- joins in sequelize
+-- MVC -> Model View Controller
+
+
+-- hasOne
+-- hasMany
+-- belongsTo
+-- belongsToMany
+
+
+orders
+user_id
+
+
+
+
+user
+id
+
+
+user hasMany orders
+orders belongsTo users
+
+
+

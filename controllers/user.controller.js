@@ -1,8 +1,9 @@
-let { initializeUserSchema } = require('./../models/user.model');
+const { userModel } = require('./../models/user.model');
+const { orderModel } = require('./../models/order.model');
 
 class UserController {
     constructor() {
-        this.schema = initializeUserSchema();
+        this.schema = userModel;
     }
 
     createUser(user) {
@@ -29,8 +30,17 @@ class UserController {
 
     }
 
-    findUserById(id) {
-        
+    findUserById(id, orderModelRequired) {
+        let orderModelInclude = null
+        if(orderModelRequired) {
+            orderModelInclude = this.createOrderModelInclude();
+        }
+        return this.schema.findOne({
+            where: {
+                id: id
+            },
+            include: [ orderModelInclude ]
+        });
     }
 
     findAllUsers() {
@@ -39,6 +49,13 @@ class UserController {
         .findAll()
         .then(() => console.log('User Fetched'));
     }
+
+    createOrderModelInclude() {
+        return {
+            required: true,
+            model: orderModel
+        }
+    }
 }
-let userConroller = new UserController();
-module.exports = { userConroller };
+let userController = new UserController();
+module.exports = { userController };

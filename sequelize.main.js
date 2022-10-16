@@ -1,12 +1,14 @@
-const { userController } = require('./controllers/user.controller');
-const { productController } = require('./controllers/product.controller');
-const { executeWithSync } = require('./sequelize.connection');
+let { Sequelize, DataTypes } = require('sequelize');
 
-let p1 = userController
-.findUserById(2, true)
-.then((data) => {
-    console.log(data);
+// console.log(Sequelize);
+
+let sequelize = new Sequelize('ecommerce', 'root', 'root') ({
+   host: 'localhost',
+   dialect: 'mysql'
+});
+
+sequelize.authntication().then(() => {
+    console.log('Connected Succesfully');
+}).catch((error) => {
+    console.log('Error while connecting', error);
 })
-;
-
-executeWithSync(p1);
